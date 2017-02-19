@@ -25,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkCameraPermission();
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
     }
 
     @Override
@@ -45,8 +47,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkCameraPermission() {
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
-
-
+        try {
+            Log.d(TAG, "The value of the permissions check is: " + permissionCheck);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @OnClick(R.id.scanner_btn)
@@ -62,7 +68,5 @@ public class MainActivity extends AppCompatActivity {
     void startTextSearch() {
         Log.d(TAG, "Search button was clicked!");
     }
-
-
 
 }
