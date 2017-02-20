@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private void testDbConnection() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
+        
         myRef.orderByChild("Part ").equalTo("96119665HF").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
