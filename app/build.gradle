@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 23
@@ -26,11 +27,13 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.0.0'
-    testCompile 'junit:junit:4.12'
     compile 'com.parse:parse-android:1.13.1'
     compile 'com.tarun0.zxing-standalone:zxing-standalone:1.0.0'
     compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'org.mongodb:mongodb-driver:3.4.2'
+    compile 'com.google.firebase:firebase-database:10.0.1'
+    compile 'com.google.firebase:firebase-auth:10.0.1'
+    testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     apt 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile 'org.mongodb:mongodb-driver:3.4.2'
 }

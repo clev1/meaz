@@ -10,7 +10,16 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.app.meaz.meaz.Utils.DatabaseUtils;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.client.android.CaptureActivity;
+import com.mongodb.Mongo;
+import com.mongodb.client.MongoDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         checkCameraPermission();
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        DatabaseUtils.fireBaseSignIn();
+        testDbConnection();
 
     }
 
@@ -45,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     private void checkCameraPermission() {
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         try {
@@ -53,6 +65,22 @@ public class MainActivity extends AppCompatActivity {
         catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void testDbConnection() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+        myRef.orderByChild("Part ").equalTo("96119665HF").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "The data found is: " + dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @OnClick(R.id.scanner_btn)
