@@ -68,20 +68,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void testDbConnection() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
-        
-        myRef.orderByChild("Part ").equalTo("96119665HF").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d(TAG, "The data found is: " + dataSnapshot);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        DatabaseUtils.fireBaseInit();
+        DatabaseUtils.fireBaseQuery("96119665HF");
     }
 
     @OnClick(R.id.scanner_btn)
