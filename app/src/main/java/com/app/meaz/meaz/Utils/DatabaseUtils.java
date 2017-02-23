@@ -1,9 +1,12 @@
 package com.app.meaz.meaz.Utils;
 
 
+import android.content.Context;
 import android.util.Log;
 
+import com.app.meaz.meaz.Adapters.ProductAdapter;
 import com.app.meaz.meaz.Models.Product;
+import com.app.meaz.meaz.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +33,12 @@ public class DatabaseUtils {
 
     private static FirebaseAuth mAuth;
     private static DatabaseReference db;
+    private static Product product = null;
+    private static Context context;
+
+    public DatabaseUtils(Context context) {
+        this.context = context;
+    }
 
     public static void fireBaseSignIn() {
         mAuth = FirebaseAuth.getInstance();
@@ -46,9 +55,12 @@ public class DatabaseUtils {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot data: dataSnapshot.getChildren()){
-                    Product product = data.getValue(Product.class);
-                    Log.d(TAG, "Value shows: " + product.getTitle());
+                    product = data.getValue(Product.class);
+                    ProductAdapter pd = new ProductAdapter(context, R.layout.activity_main , product);
+                    pd.setData();
+                    Log.d(TAG, "Value shows: " + product.getSizes());
                 }
+
             }
 
             @Override

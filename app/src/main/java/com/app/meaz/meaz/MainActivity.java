@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.meaz.meaz.Utils.DatabaseUtils;
@@ -21,6 +23,8 @@ import com.google.zxing.client.android.CaptureActivity;
 import com.mongodb.Mongo;
 import com.mongodb.client.MongoDatabase;
 
+import org.w3c.dom.Text;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -30,6 +34,32 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     @BindView(R.id.search_box)
     EditText searchBox;
+
+    @BindView(R.id.product_title)
+    TextView title;
+
+    @BindView(R.id.front_name)
+    TextView frontName;
+
+    @BindView(R.id.front_part_number)
+    TextView frontPartNumber;
+
+    @BindView(R.id.back_name)
+    TextView backName;
+
+    @BindView(R.id.back_part_number)
+    TextView  backPartNumber;
+
+    @BindView(R.id.thread_color_text)
+    TextView threadColor;
+
+    @BindView(R.id.size_1)
+    TextView size_1;
+
+    @BindView(R.id.img_holder)
+    ImageView imageView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +98,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void testDbConnection() {
-        DatabaseUtils.fireBaseInit();
-        DatabaseUtils.fireBaseQuery("96119665HF");
+        DatabaseUtils databaseUtils = new DatabaseUtils(this);
+        databaseUtils.fireBaseInit();
+        databaseUtils.fireBaseQuery("96119665HF");
     }
 
     @OnClick(R.id.scanner_btn)

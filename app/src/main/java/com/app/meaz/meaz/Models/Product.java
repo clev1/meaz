@@ -38,7 +38,7 @@ public class Product {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void setTitle(String title) {
@@ -46,7 +46,7 @@ public class Product {
     }
 
     public String getFrontName() {
-        return frontName;
+        return this.frontName;
     }
 
     public void setFrontName(String frontName) {
@@ -54,7 +54,7 @@ public class Product {
     }
 
     public String getPart_1() {
-        return part_1;
+        return this.part_1;
     }
 
     public void setPart_1(String part_1) {
@@ -62,7 +62,7 @@ public class Product {
     }
 
     public String getPart_2() {
-        return part_2;
+        return this.part_2;
     }
 
     public void setPart_2(String part_2) {
@@ -70,7 +70,7 @@ public class Product {
     }
 
     public String getBackName() {
-        return backName;
+        return this.backName;
     }
 
     public void setBackName(String backName) {
@@ -78,7 +78,7 @@ public class Product {
     }
 
     public String getBackPart() {
-        return backPart;
+        return this.backPart;
     }
 
     public void setBackPart(String backPart) {
@@ -86,7 +86,7 @@ public class Product {
     }
 
     public String getThreadColor() {
-        return threadColor;
+        return this.threadColor;
     }
 
     public void setThreadColor(String threadColor) {
@@ -94,7 +94,7 @@ public class Product {
     }
 
     public String getSizes() {
-        return sizes;
+        return this.sizes;
     }
 
     public void setSizes(String sizes) {
