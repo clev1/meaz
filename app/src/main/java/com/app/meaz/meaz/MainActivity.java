@@ -6,9 +6,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.img_holder)
     ImageView imageView;
 
-
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         DatabaseUtils.fireBaseSignIn();
-        testDbConnection();
 
     }
 
@@ -86,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private void checkCameraPermission() {
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         try {
@@ -95,12 +96,6 @@ public class MainActivity extends AppCompatActivity {
         catch(Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void testDbConnection() {
-        DatabaseUtils databaseUtils = new DatabaseUtils(this);
-        databaseUtils.fireBaseInit();
-        databaseUtils.fireBaseQuery("96119665HF");
     }
 
     @OnClick(R.id.scanner_btn)
@@ -114,7 +109,20 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.search_btn)
     void startTextSearch() {
-        Log.d(TAG, "Search button was clicked!");
+        progressBar.setVisibility(View.VISIBLE);
+        String s = searchBox.getText().toString();
+        if(s != null) {
+            Log.d(TAG, "The search button was clicked" + s);
+            DatabaseUtils databaseUtils = new DatabaseUtils(this);
+            databaseUtils.fireBaseInit();
+            databaseUtils.fireBaseQuery(s);
+            progressBar.setVisibility(View.INVISIBLE);
+        }
+        else {
+            progressBar.setVisibility(View.INVISIBLE);
+            Log.d(TAG, "The value of the text box is empty");
+        }
+
     }
 
 }

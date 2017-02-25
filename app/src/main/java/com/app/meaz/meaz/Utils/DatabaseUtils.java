@@ -3,6 +3,7 @@ package com.app.meaz.meaz.Utils;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.app.meaz.meaz.Adapters.ProductAdapter;
 import com.app.meaz.meaz.Models.Product;
@@ -13,6 +14,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
@@ -51,21 +53,28 @@ public class DatabaseUtils {
     }
 
     public static void fireBaseQuery(String string) {
-        db.orderByChild("part_1").equalTo(string).addValueEventListener(new ValueEventListener() {
+
+        Log.d(TAG, "Firebase query initiated");
+        Query query = db.orderByChild("part_1").equalTo(string);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot data: dataSnapshot.getChildren()){
-                    product = data.getValue(Product.class);
-                    ProductAdapter pd = new ProductAdapter(context, R.layout.activity_main , product);
-                    pd.setData();
-                    Log.d(TAG, "Value shows: " + product.getSizes());
+                if(dataSnapshot.exists()) {
+                    for(DataSnapshot data : dataSnapshot.getChildren()) {
+                        product = data.getValue(Product.class);
+                        ProductAdapter pd = new ProductAdapter(context, R.layout.activity_main, product);
+                        pd.setData();
+                    }
                 }
-
+                else {
+                    Log.d(TAG, "The value didn't exist");
+                    Toast.makeText(context, "No results found", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "The database error is: " + databaseError);
+                Log.d(TAG, "Query was cancelled");
             }
         });
     }
