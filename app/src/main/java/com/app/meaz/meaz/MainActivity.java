@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.meaz.meaz.Networking.Controllers.FirebaseController;
 import com.app.meaz.meaz.Utils.DatabaseUtils;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -113,9 +114,11 @@ public class MainActivity extends AppCompatActivity {
         String s = searchBox.getText().toString();
         if(s != null) {
             Log.d(TAG, "The search button was clicked" + s);
-            DatabaseUtils databaseUtils = new DatabaseUtils(this);
-            databaseUtils.fireBaseInit();
-            databaseUtils.fireBaseQuery(s);
+            FirebaseController firebaseController = new FirebaseController();
+            firebaseController.start();
+//            DatabaseUtils databaseUtils = new DatabaseUtils(this);
+//            databaseUtils.fireBaseInit();
+//            databaseUtils.fireScanBaseQuery(s);
             progressBar.setVisibility(View.INVISIBLE);
         }
         else {

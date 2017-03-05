@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.app.meaz.meaz.Adapters.ProductAdapter;
 import com.app.meaz.meaz.Models.Product;
+import com.app.meaz.meaz.Networking.RestClient;
 import com.app.meaz.meaz.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,7 +53,7 @@ public class DatabaseUtils {
         db = database.getReference();
     }
 
-    public static void fireBaseQuery(String string) {
+    public static void fireScanBaseQuery(String string) {
 
         Log.d(TAG, "Firebase query initiated");
         Query query = db.orderByChild("part_1").equalTo(string);
@@ -77,5 +78,12 @@ public class DatabaseUtils {
                 Log.d(TAG, "Query was cancelled");
             }
         });
+    }
+
+    public static void fireTextBaseQuery(String string) {
+
+        Log.d(TAG, "Firebase query initiated");
+        RestClient client = new RestClient();
+
     }
 }
