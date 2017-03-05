@@ -35,7 +35,7 @@ public class FirebaseController {
 
     final static String TAG = "FirebaseController";
     private String searchText;
-    private final String baseURL = "https://vzcdmfd7:n7d9hdamumcldcls@apple-8534675.us-east-1.bonsaisearch.net";
+    private final String baseURL = "https://1xm3j9fwzz:q1mlr4ubrx@apple-8534675.us-east-1.bonsaisearch.net";
 
     public void setSearchText(String s) {
 
@@ -51,12 +51,13 @@ public class FirebaseController {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(baseURL).addConverterFactory(GsonConverterFactory.create(gson)).client(client)
                 .build();
         FirebaseService fs = retrofit.create(FirebaseService.class);
-        Call<ProductList> call = fs.listProducts("Black");
-        call.enqueue(new Callback<ProductList>() {
+        Call<Object> call = fs.listProducts("Black");
+        call.enqueue(new Callback<Object>() {
             @Override
-            public void onResponse(Call<ProductList> call, Response<ProductList> response) {
+            public void onResponse(Call<Object> call, Response<Object> response) {
                 if(response.isSuccessful()) {
                     Log.d(TAG, "The request was successful" + response.body());
+
                 }
                 else {
                     Log.d(TAG, "The request wasn't successful" + response);
@@ -64,7 +65,7 @@ public class FirebaseController {
             }
 
             @Override
-            public void onFailure(Call<ProductList> call, Throwable t) {
+            public void onFailure(Call<Object> call, Throwable t) {
                 Log.d(TAG, "The onFailure method was called" + t);
                 t.printStackTrace();
             }

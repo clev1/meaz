@@ -11,8 +11,16 @@ import java.util.List;
  */
 
 public class ProductList {
-    @SerializedName("data")
+    @SerializedName("_source")
     private List<Product> products;
+    private Product product;
 
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 
 }

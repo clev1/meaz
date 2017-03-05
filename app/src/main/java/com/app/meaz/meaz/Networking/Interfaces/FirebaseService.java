@@ -20,6 +20,6 @@ import retrofit2.http.Query;
 
 public interface FirebaseService {
     @GET("/firebase/product/_search/")
-    Call<ProductList> listProducts(@Query("q") String search);
+    Call<Object> listProducts(@Query("q") String search);
 //    ?q={string}&size=5&pretty=true
 }
