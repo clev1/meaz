@@ -1,8 +1,9 @@
 package com.app.meaz.meaz.Networking.Interfaces;
 
 
+import com.app.meaz.meaz.Models.PackageList;
 import com.app.meaz.meaz.Models.Product;
-import com.app.meaz.meaz.Models.ProductList;
+
 
 import java.util.List;
 
@@ -20,6 +21,6 @@ import retrofit2.http.Query;
 
 public interface FirebaseService {
     @GET("/firebase/product/_search/")
-    Call<Object> listProducts(@Query("q") String search);
+    Call<PackageList> listProducts(@Query("q") String search);
 //    ?q={string}&size=5&pretty=true
 }

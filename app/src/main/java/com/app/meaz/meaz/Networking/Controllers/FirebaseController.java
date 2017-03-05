@@ -3,8 +3,10 @@ package com.app.meaz.meaz.Networking.Controllers;
 
 import android.util.Log;
 
+import com.app.meaz.meaz.Models.Hit;
+import com.app.meaz.meaz.Models.Hits;
+import com.app.meaz.meaz.Models.PackageList;
 import com.app.meaz.meaz.Models.Product;
-import com.app.meaz.meaz.Models.ProductList;
 import com.app.meaz.meaz.Networking.Interfaces.FirebaseService;
 import com.app.meaz.meaz.Networking.RestClient;
 import com.google.gson.Gson;
@@ -51,12 +53,18 @@ public class FirebaseController {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(baseURL).addConverterFactory(GsonConverterFactory.create(gson)).client(client)
                 .build();
         FirebaseService fs = retrofit.create(FirebaseService.class);
-        Call<Object> call = fs.listProducts("Black");
-        call.enqueue(new Callback<Object>() {
+        Call<PackageList> call = fs.listProducts("Black");
+        call.enqueue(new Callback<PackageList>() {
             @Override
-            public void onResponse(Call<Object> call, Response<Object> response) {
+            public void onResponse(Call<PackageList> call, Response<PackageList> response) {
                 if(response.isSuccessful()) {
                     Log.d(TAG, "The request was successful" + response.body());
+                    PackageList packageList = response.body();
+                    Hits hits = packageList.getHits();
+                    for(Hit hit: hits.getHits()) {
+                        Log.d(TAG, "The value of the hit shows: " + hit.getSource().getTitle());
+                    }
+
 
                 }
                 else {
@@ -65,7 +73,7 @@ public class FirebaseController {
             }
 
             @Override
-            public void onFailure(Call<Object> call, Throwable t) {
+            public void onFailure(Call<PackageList> call, Throwable t) {
                 Log.d(TAG, "The onFailure method was called" + t);
                 t.printStackTrace();
             }
