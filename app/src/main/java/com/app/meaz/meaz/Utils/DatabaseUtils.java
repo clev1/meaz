@@ -1,12 +1,15 @@
 package com.app.meaz.meaz.Utils;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.app.meaz.meaz.Adapters.ProductAdapter;
 import com.app.meaz.meaz.Models.Product;
+import com.app.meaz.meaz.Networking.Controllers.FirebaseController;
 import com.app.meaz.meaz.Networking.RestClient;
 import com.app.meaz.meaz.R;
 import com.google.firebase.FirebaseApp;
@@ -63,8 +66,8 @@ public class DatabaseUtils {
                 if(dataSnapshot.exists()) {
                     for(DataSnapshot data : dataSnapshot.getChildren()) {
                         product = data.getValue(Product.class);
-                        ProductAdapter pd = new ProductAdapter(context, R.layout.activity_main, product);
-                        pd.setData();
+//                        ProductAdapter pd = new ProductAdapter(context, R.layout.activity_main, product);
+//                        pd.setData();
                     }
                 }
                 else {
@@ -81,9 +84,6 @@ public class DatabaseUtils {
     }
 
     public static void fireTextBaseQuery(String string) {
-
-        Log.d(TAG, "Firebase query initiated");
-        RestClient client = new RestClient();
 
     }
 }

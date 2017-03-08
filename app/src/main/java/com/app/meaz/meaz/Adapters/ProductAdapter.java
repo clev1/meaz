@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.app.meaz.meaz.MainActivity;
 import com.app.meaz.meaz.Models.Product;
+import com.app.meaz.meaz.Models.Source;
 import com.app.meaz.meaz.R;
 
 import org.w3c.dom.Text;
@@ -26,10 +27,10 @@ import java.util.ArrayList;
 
 public class ProductAdapter {
     private final Context context;
-    private final Product data;
+    private final Source data;
     private final int layoutResourceId;
 
-    public ProductAdapter(Context context, int layoutResourceId, Product data) {
+    public ProductAdapter(Context context, int layoutResourceId, Source data) {
         this.context = context;
         this.data = data;
         this.layoutResourceId = layoutResourceId;
@@ -52,10 +53,10 @@ public class ProductAdapter {
             holder.threadColor = (TextView)v.findViewById(R.id.thread_color_text);
             holder.imageView = (ImageView)v.findViewById(R.id.image_view);
 
-            Product product = data;
+            Source product = data;
             holder.title.setText(product.getTitle());
             holder.frontName.setText(product.getFrontName());
-            holder.frontPartNumber.setText(product.getPart_1());
+            holder.frontPartNumber.setText(product.getPart1());
             holder.backName.setText(product.getBackName());
             holder.backPartNumber.setText(product.getBackPart());
             holder.threadColor.setText(product.getThreadColor());

@@ -1,7 +1,10 @@
 package com.app.meaz.meaz;
 
 import android.Manifest;
+import android.app.Fragment;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.meaz.meaz.Dialogs.ProductsDialog;
 import com.app.meaz.meaz.Networking.Controllers.FirebaseController;
 import com.app.meaz.meaz.Utils.DatabaseUtils;
 import com.google.firebase.FirebaseApp;
@@ -114,8 +118,14 @@ public class MainActivity extends AppCompatActivity {
         String s = searchBox.getText().toString();
         if(s != null) {
             Log.d(TAG, "The search button was clicked" + s);
-            FirebaseController firebaseController = new FirebaseController();
-            firebaseController.start();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ProductsDialog productsDialog = ProductsDialog.newInstance();
+            productsDialog.show(ft, "dialog");
+
+//            DatabaseUtils databaseUtils = new DatabaseUtils(this);
+//            databaseUtils.fireTextBaseQuery("s");
+//            FirebaseController firebaseController = new FirebaseController();
+//            firebaseController.start();
 //            DatabaseUtils databaseUtils = new DatabaseUtils(this);
 //            databaseUtils.fireBaseInit();
 //            databaseUtils.fireScanBaseQuery(s);
