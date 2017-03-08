@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.app.meaz.meaz.Adapters.ProductListAdapter;
+import com.app.meaz.meaz.Interfaces.OnSelectionInterface;
 import com.app.meaz.meaz.Models.Hit;
 import com.app.meaz.meaz.Models.Hits;
+import com.app.meaz.meaz.Models.Product;
 import com.app.meaz.meaz.Models.Source;
 import com.app.meaz.meaz.Networking.Controllers.FirebaseController;
 
@@ -30,11 +32,12 @@ import butterknife.ButterKnife;
  * ${EMAIL}
  */
 
-public class ProductsDialog extends DialogFragment {
+public class ProductsDialog extends DialogFragment implements OnSelectionInterface{
 
     private ListView listView;
     final static String TAG = "ProductsDialog";
     String search;
+    OnSelectionInterface onSelectionInterface;
     public ProductsDialog() {
 
     }
@@ -45,6 +48,10 @@ public class ProductsDialog extends DialogFragment {
         ProductsDialog fragment = new ProductsDialog();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public static void dismissDialog() {
+        dismissDialog();
     }
 
     @Override
@@ -72,7 +79,6 @@ public class ProductsDialog extends DialogFragment {
                 ProductListAdapter productListAdapter = new ProductListAdapter(getContext(), R.layout.product_list_row, listOfHits);
                 Log.d(TAG, "The count returns: " + productListAdapter.getCount());
                 listView.setAdapter(productListAdapter);
-
             }
         });
 
@@ -84,4 +90,9 @@ public class ProductsDialog extends DialogFragment {
         super.onAttach(context);
     }
 
+
+    @Override
+    public void setSelectedProduct(Product product) {
+        Log.d(TAG, "The product passed back shows: " + product);
+    }
 }

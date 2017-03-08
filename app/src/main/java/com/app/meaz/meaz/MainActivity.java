@@ -17,7 +17,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.meaz.meaz.Adapters.ProductAdapter;
+import com.app.meaz.meaz.Adapters.ProductListAdapter;
 import com.app.meaz.meaz.Dialogs.ProductsDialog;
+import com.app.meaz.meaz.Models.Product;
 import com.app.meaz.meaz.Networking.Controllers.FirebaseController;
 import com.app.meaz.meaz.Utils.DatabaseUtils;
 import com.google.firebase.FirebaseApp;
