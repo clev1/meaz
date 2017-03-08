@@ -66,8 +66,8 @@ public class DatabaseUtils {
                 if(dataSnapshot.exists()) {
                     for(DataSnapshot data : dataSnapshot.getChildren()) {
                         product = data.getValue(Product.class);
-//                        ProductAdapter pd = new ProductAdapter(context, R.layout.activity_main, product);
-//                        pd.setData();
+                        ProductAdapter pd = new ProductAdapter(context, R.layout.activity_main, product);
+                        pd.setData();
                     }
                 }
                 else {
@@ -83,7 +83,5 @@ public class DatabaseUtils {
         });
     }
 
-    public static void fireTextBaseQuery(String string) {
 
-    }
 }

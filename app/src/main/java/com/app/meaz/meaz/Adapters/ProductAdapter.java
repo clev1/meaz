@@ -27,12 +27,12 @@ import java.util.ArrayList;
 
 public class ProductAdapter {
     private final Context context;
-    private final Source data;
+    private final Product product;
     private final int layoutResourceId;
 
-    public ProductAdapter(Context context, int layoutResourceId, Source data) {
+    public ProductAdapter(Context context, int layoutResourceId, Product product) {
         this.context = context;
-        this.data = data;
+        this.product = product;
         this.layoutResourceId = layoutResourceId;
     }
 
@@ -53,10 +53,10 @@ public class ProductAdapter {
             holder.threadColor = (TextView)v.findViewById(R.id.thread_color_text);
             holder.imageView = (ImageView)v.findViewById(R.id.image_view);
 
-            Source product = data;
+            Product product = this.product;
             holder.title.setText(product.getTitle());
             holder.frontName.setText(product.getFrontName());
-            holder.frontPartNumber.setText(product.getPart1());
+            holder.frontPartNumber.setText(product.getPart_1());
             holder.backName.setText(product.getBackName());
             holder.backPartNumber.setText(product.getBackPart());
             holder.threadColor.setText(product.getThreadColor());
