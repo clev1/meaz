@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.meaz.meaz.Models.Hit;
 import com.app.meaz.meaz.Models.Hits;
 import com.app.meaz.meaz.Models.Source;
 import com.app.meaz.meaz.R;
+import com.app.meaz.meaz.Utils.ImageUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +59,7 @@ public class ProductListAdapter extends ArrayAdapter<Source> {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.product_list_row, parent, false);
             viewHolder.title = (TextView) convertView.findViewById(R.id.list_title);
+            viewHolder.image = (ImageView) convertView.findViewById(R.id.list_image);
             result = convertView;
             convertView.setTag(viewHolder);
         }
@@ -64,12 +67,17 @@ public class ProductListAdapter extends ArrayAdapter<Source> {
             viewHolder = (ViewHolder) convertView.getTag();
             result = convertView;
         }
+        StringBuilder newUrl = new StringBuilder(source.getImageURL());
+        newUrl.insert(0, "http://");
+        ImageUtil imageUtil = new ImageUtil(newUrl.toString(), viewHolder.image, context);
+        imageUtil.setImage();
         viewHolder.title.setText(source.getTitle());
         return convertView;
     }
 
     private static class ViewHolder {
         TextView title;
+        ImageView image;
     }
 
 }
