@@ -47,10 +47,17 @@ public class FirebaseController {
     private OnFirebaseQueryComplete onFirebaseQueryComplete;
     private final String baseURL = "https://1xm3j9fwzz:q1mlr4ubrx@apple-8534675.us-east-1.bonsaisearch.net";
 
-    public FirebaseController() {
+    public FirebaseController(String search) {
+        if(search != null) {
+            searchText = search;
+        }
+        else {
+            Log.d(TAG, "The value of search is null!");
+        }
         this.onFirebaseQueryComplete = null;
         start();
     }
+
     public void setListOfHits(List<Hit> listOfHits) {
 
     }
@@ -67,7 +74,7 @@ public class FirebaseController {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(baseURL).addConverterFactory(GsonConverterFactory.create(gson)).client(client)
                 .build();
         FirebaseService fs = retrofit.create(FirebaseService.class);
-        Call<PackageList> call = fs.listProducts("Black");
+        Call<PackageList> call = fs.listProducts(searchText);
         call.enqueue(new Callback<PackageList>() {
             @Override
             public void onResponse(Call<PackageList> call, Response<PackageList> response) {

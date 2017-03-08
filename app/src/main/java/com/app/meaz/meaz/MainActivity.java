@@ -118,8 +118,13 @@ public class MainActivity extends AppCompatActivity {
         String s = searchBox.getText().toString();
         if(s != null) {
             Log.d(TAG, "The search button was clicked" + s);
+
+
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ProductsDialog productsDialog = ProductsDialog.newInstance();
+            Bundle bundle = new Bundle();
+            bundle.putString("search", s);
+            productsDialog.setArguments(bundle);
             productsDialog.show(ft, "dialog");
 
 //            DatabaseUtils databaseUtils = new DatabaseUtils(this);

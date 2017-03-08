@@ -34,6 +34,7 @@ public class ProductsDialog extends DialogFragment {
 
     private ListView listView;
     final static String TAG = "ProductsDialog";
+    String search;
     public ProductsDialog() {
 
     }
@@ -57,7 +58,14 @@ public class ProductsDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.product_list_dialog, container, false);
         listView = (ListView) v.findViewById(R.id.list);
-        FirebaseController firebaseController = new FirebaseController();
+        Bundle bundle = this.getArguments();
+        if(bundle != null) {
+            search = bundle.getString("search", "Default");
+        }
+        else {
+            Log.d(TAG, "The bundle is null dickhead!");
+        }
+        FirebaseController firebaseController = new FirebaseController(search);
         firebaseController.setOnFirebaseQueryComplete(new FirebaseController.OnFirebaseQueryComplete() {
             @Override
             public void onFirebaseQueryComplete(ArrayList<Source> listOfHits) {
