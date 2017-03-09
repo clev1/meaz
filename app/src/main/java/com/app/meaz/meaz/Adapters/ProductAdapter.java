@@ -15,6 +15,7 @@ import com.app.meaz.meaz.MainActivity;
 import com.app.meaz.meaz.Models.Product;
 import com.app.meaz.meaz.Models.Source;
 import com.app.meaz.meaz.R;
+import com.app.meaz.meaz.Utils.ImageUtil;
 
 import org.w3c.dom.Text;
 
@@ -51,7 +52,7 @@ public class ProductAdapter {
             holder.backName = (TextView)v.findViewById(R.id.back_name);
             holder.backPartNumber = (TextView)v.findViewById(R.id.back_part_number);
             holder.threadColor = (TextView)v.findViewById(R.id.thread_color_text);
-            holder.imageView = (ImageView)v.findViewById(R.id.image_view);
+            holder.imageView = (ImageView)v.findViewById(R.id.img_holder);
 
             Product product = this.product;
             holder.title.setText(product.getTitle());
@@ -60,6 +61,10 @@ public class ProductAdapter {
             holder.backName.setText(product.getBackName());
             holder.backPartNumber.setText(product.getBackPart());
             holder.threadColor.setText(product.getThreadColor());
+            StringBuilder newUrl = new StringBuilder(product.getImageURL());
+            newUrl.insert(0, "http://");
+            ImageUtil imageUtil = new ImageUtil(newUrl.toString(), holder.imageView, context);
+            imageUtil.setImage();
             //        holder.imageView.setImageBitmap(product.getImageURL());
 
         }

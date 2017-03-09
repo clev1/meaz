@@ -154,6 +154,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void productSelection(Product product) {
         Log.d(TAG, "The product selected was: " + product);
+        ProductAdapter pd = new ProductAdapter(this, R.layout.activity_main, product);
+        pd.setData();
     }
 
 }
