@@ -105,7 +105,7 @@ public class ProductsDialog extends DialogFragment implements OnSelectionInterfa
                     }
                     else {
                         Log.d(TAG, "Error the list returned is 0");
-                        Toast.makeText(getContext(), "No search results found!", Toast.LENGTH_LONG).show();
+
                     }
 
                 }

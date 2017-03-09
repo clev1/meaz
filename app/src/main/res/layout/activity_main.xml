@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.app.meaz.meaz.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:titleTextColor="@android:color/white"
+        android:background="#FFFFFF">
+        <RelativeLayout android:id="@+id/toolbar_logo"
+            android:layout_width="140dp" android:layout_height="wrap_content"
+            android:background="@drawable/meazinclogo"
+            android:layout_gravity="left|center_vertical"
+            android:clickable="true">
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+
+<LinearLayout
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,13 +31,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context="com.app.meaz.meaz.MainActivity">
-
+    android:orientation="vertical">
     <LinearLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginBottom="20dp"
         android:layout_alignParentTop="true"
         android:weightSum="1">
 
@@ -56,7 +77,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -73,7 +94,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:id="@+id/img_holder" />
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -314,4 +335,6 @@
         android:layout_gravity= "center_horizontal|center_vertical"
         android:visibility="invisible"/>
 
-</FrameLayout>
+</LinearLayout>
+
+</LinearLayout>
