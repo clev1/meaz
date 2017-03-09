@@ -11,6 +11,8 @@ import com.app.meaz.meaz.Networking.Controllers.FirebaseController;
 
 public interface OnSelectionInterface {
 
-    public void setSelectedProduct(Product product);
+void setSelectedProduct(Product product);
 
 }
+
+

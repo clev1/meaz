@@ -1,6 +1,7 @@
 package com.app.meaz.meaz.Dialogs;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 
 import com.app.meaz.meaz.Adapters.ProductListAdapter;
 import com.app.meaz.meaz.Interfaces.OnSelectionInterface;
+import com.app.meaz.meaz.MainActivity;
 import com.app.meaz.meaz.Models.Hit;
 import com.app.meaz.meaz.Models.Hits;
 import com.app.meaz.meaz.Models.Product;
@@ -37,7 +39,6 @@ public class ProductsDialog extends DialogFragment implements OnSelectionInterfa
     private ListView listView;
     final static String TAG = "ProductsDialog";
     String search;
-    OnSelectionInterface onSelectionInterface;
     public ProductsDialog() {
 
     }
@@ -76,9 +77,19 @@ public class ProductsDialog extends DialogFragment implements OnSelectionInterfa
         firebaseController.setOnFirebaseQueryComplete(new FirebaseController.OnFirebaseQueryComplete() {
             @Override
             public void onFirebaseQueryComplete(ArrayList<Source> listOfHits) {
+
                 ProductListAdapter productListAdapter = new ProductListAdapter(getContext(), R.layout.product_list_row, listOfHits);
                 Log.d(TAG, "The count returns: " + productListAdapter.getCount());
                 listView.setAdapter(productListAdapter);
+                productListAdapter.setTestListener(new ProductListAdapter.testListener() {
+                    @Override
+                    public void onDataSet(Product product) {
+                        Log.d(TAG, "The product selected is: " + product);
+                        MainActivity mainActivity = (MainActivity) getActivity();
+                        mainActivity.productSelection(product);
+                        dismiss();
+                    }
+                });
             }
         });
 

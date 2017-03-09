@@ -37,6 +37,7 @@ import butterknife.OnClick;
 
 public class ProductListAdapter extends ArrayAdapter<Source> {
     OnSelectionInterface selectionInterface;
+    private testListener listener;
     final static String TAG = "ProductListAdapter";
     List<Source> items;
     Context context;
@@ -48,6 +49,7 @@ public class ProductListAdapter extends ArrayAdapter<Source> {
         super(context, R.layout.product_list_row,items);
         this.items = items;
         this.context = context;
+        this.listener = null;
     }
 
     @Override
@@ -90,7 +92,7 @@ public class ProductListAdapter extends ArrayAdapter<Source> {
                 product.setBackPart(source.getBackPart());
                 product.setThreadColor(source.getThreadColor());
                 product.setImageURL(source.getImageURL());
-
+                listener.onDataSet(product);
             }
         });
         ButterKnife.bind(this,convertView);
@@ -102,4 +104,11 @@ public class ProductListAdapter extends ArrayAdapter<Source> {
         ImageButton image;
     }
 
+    public interface testListener {
+        public void onDataSet(Product product);
+    }
+
+    public void setTestListener(testListener listener) {
+        this.listener = listener;
+    }
 }
