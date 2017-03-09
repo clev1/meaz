@@ -116,11 +116,6 @@ public class MainActivity extends AppCompatActivity {
         intent.setAction("com.google.zxing.client.android.SCAN");
         intent.putExtra("SAVE_HISTORY", false);
         startActivityForResult(intent, 0);
-        String s = intent.getStringExtra("SAVE_HISTORY");
-        DatabaseUtils databaseUtils = new DatabaseUtils(this);
-        databaseUtils.fireBaseInit();
-        databaseUtils.fireScanBaseQuery(s);
-
     }
 
     @OnClick(R.id.search_btn)
