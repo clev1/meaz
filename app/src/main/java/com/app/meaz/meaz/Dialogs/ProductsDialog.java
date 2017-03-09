@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.meaz.meaz.Adapters.ProductListAdapter;
 import com.app.meaz.meaz.Interfaces.OnSelectionInterface;
@@ -39,6 +41,14 @@ public class ProductsDialog extends DialogFragment implements OnSelectionInterfa
     private ListView listView;
     final static String TAG = "ProductsDialog";
     String search;
+
+    @BindView(R.id.no_results)
+    TextView noResults;
+
+    @BindView(R.id.list)
+    ListView list;
+
+
     public ProductsDialog() {
 
     }
@@ -77,22 +87,35 @@ public class ProductsDialog extends DialogFragment implements OnSelectionInterfa
         firebaseController.setOnFirebaseQueryComplete(new FirebaseController.OnFirebaseQueryComplete() {
             @Override
             public void onFirebaseQueryComplete(ArrayList<Source> listOfHits) {
-
-                ProductListAdapter productListAdapter = new ProductListAdapter(getContext(), R.layout.product_list_row, listOfHits);
-                Log.d(TAG, "The count returns: " + productListAdapter.getCount());
-                listView.setAdapter(productListAdapter);
-                productListAdapter.setTestListener(new ProductListAdapter.testListener() {
-                    @Override
-                    public void onDataSet(Product product) {
-                        Log.d(TAG, "The product selected is: " + product);
-                        MainActivity mainActivity = (MainActivity) getActivity();
-                        mainActivity.productSelection(product);
-                        dismiss();
+                if(listOfHits != null) {
+                    ProductListAdapter productListAdapter = new ProductListAdapter(getContext(), R.layout.product_list_row, listOfHits);
+                    if(productListAdapter.getCount() > 0) {
+                        noResults.setVisibility(View.INVISIBLE);
+                        list.setVisibility(View.VISIBLE);
+                        listView.setAdapter(productListAdapter);
+                        productListAdapter.setTestListener(new ProductListAdapter.testListener() {
+                            @Override
+                            public void onDataSet(Product product) {
+                                Log.d(TAG, "The product selected is: " + product);
+                                MainActivity mainActivity = (MainActivity) getActivity();
+                                mainActivity.productSelection(product);
+                                dismiss();
+                            }
+                        });
                     }
-                });
+                    else {
+                        Log.d(TAG, "Error the list returned is 0");
+                        Toast.makeText(getContext(), "No search results found!", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+                else {
+                    Log.d(TAG, "Error the list returned is null");
+                }
+
             }
         });
-
+        ButterKnife.bind(this, v);
         return v;
     }
 
@@ -106,4 +129,5 @@ public class ProductsDialog extends DialogFragment implements OnSelectionInterfa
     public void setSelectedProduct(Product product) {
         Log.d(TAG, "The product passed back shows: " + product);
     }
+
 }

@@ -94,13 +94,6 @@ public class FirebaseController {
                         onFirebaseQueryComplete.onFirebaseQueryComplete(listOfSources);
                     }
 
-//                    for(Hit hit: hits.getHits()) {
-//                        Log.d(TAG, "The value of the hit shows: " + hit.getSource().getTitle());
-//                        ProductAdapter productAdapter = new ProductAdapter(context, layoutResourceId, hit.getSource());
-//                        productAdapter.setData();
-//                    }
-
-
                 }
                 else {
                     Log.d(TAG, "The request wasn't successful" + response);
