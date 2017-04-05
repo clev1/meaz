@@ -80,8 +80,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         checkCameraPermission();
         setContentView(R.layout.activity_main);
+        setActionBar();
         ButterKnife.bind(this);
         DatabaseUtils.fireBaseSignIn();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -159,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
     private void setActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setIcon(R.drawable.search_icon);
 
     }
 

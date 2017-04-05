@@ -11,16 +11,18 @@
         android:id="@+id/toolbar"
         android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:padding="5dp"
         android:titleTextColor="@android:color/white"
         android:background="#FFFFFF">
+
         <RelativeLayout android:id="@+id/toolbar_logo"
-            android:layout_width="140dp" android:layout_height="wrap_content"
+            android:layout_width="180dp" android:layout_height="wrap_content"
             android:background="@drawable/meazinclogo"
             android:layout_gravity="left|center_vertical"
             android:clickable="true">
         </RelativeLayout>
+
     </android.support.v7.widget.Toolbar>
 
 
@@ -104,24 +106,24 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="#333333"
-                android:textColor="#FFFFFF"
+                android:textColor="#0b2236"
                 android:padding="5dp"
                 android:layout_margin="2dp"
                 android:layout_weight="1"
                 android:text="Front Name"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="#333333"
-                android:textColor="#FFFFFF"
+                android:textColor="#0b2236"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:padding="5dp"
                 android:text="Front Part #"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -162,24 +164,24 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="#333333"
-            android:textColor="#FFFFFF"
+            android:textColor="#0b2236"
             android:padding="5dp"
             android:layout_margin="2dp"
             android:layout_weight="1"
             android:text="Back Name"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="#333333"
-            android:textColor="#FFFFFF"
+            android:textColor="#0b2236"
             android:layout_weight="1"
             android:layout_margin="2dp"
             android:padding="5dp"
             android:text="Back Part #"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -222,24 +224,24 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="#333333"
-                android:textColor="#FFFFFF"
+                android:textColor="#0b2236"
                 android:padding="5dp"
                 android:layout_margin="2dp"
                 android:layout_weight="1"
                 android:text="Thread Color"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="#333333"
-                android:textColor="#FFFFFF"
+                android:textColor="#0b2236"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:padding="5dp"
                 android:text="Sizes"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
