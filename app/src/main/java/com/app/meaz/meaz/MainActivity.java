@@ -127,7 +127,10 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.search_btn)
     void startTextSearch() {
         progressBar.setVisibility(View.VISIBLE);
-        String s = searchBox.getText().toString() + "*";
+        StringBuilder sb = new StringBuilder(searchBox.getText());
+        sb.insert(0, "*");
+        sb.append("*");
+        String s = sb.toString();
         if(s != null) {
             Log.d(TAG, "The search button was clicked" + s);
 
