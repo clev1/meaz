@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         checkCameraPermission();
         setContentView(R.layout.activity_main);
-        setActionBar();
+//        setActionBar();
         ButterKnife.bind(this);
         DatabaseUtils.fireBaseSignIn();
     }
@@ -127,10 +127,9 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.search_btn)
     void startTextSearch() {
         progressBar.setVisibility(View.VISIBLE);
-        String s = searchBox.getText().toString();
+        String s = searchBox.getText().toString() + "*";
         if(s != null) {
             Log.d(TAG, "The search button was clicked" + s);
-
 
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ProductsDialog productsDialog = ProductsDialog.newInstance();
