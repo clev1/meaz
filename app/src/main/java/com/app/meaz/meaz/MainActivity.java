@@ -133,21 +133,12 @@ public class MainActivity extends AppCompatActivity {
         String s = sb.toString();
         if(s != null) {
             Log.d(TAG, "The search button was clicked" + s);
-
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ProductsDialog productsDialog = ProductsDialog.newInstance();
             Bundle bundle = new Bundle();
             bundle.putString("search", s);
             productsDialog.setArguments(bundle);
             productsDialog.show(ft, "dialog");
-
-//            DatabaseUtils databaseUtils = new DatabaseUtils(this);
-//            databaseUtils.fireTextBaseQuery("s");
-//            FirebaseController firebaseController = new FirebaseController();
-//            firebaseController.start();
-//            DatabaseUtils databaseUtils = new DatabaseUtils(this);
-//            databaseUtils.fireBaseInit();
-//            databaseUtils.fireScanBaseQuery(s);
             progressBar.setVisibility(View.INVISIBLE);
         }
         else {

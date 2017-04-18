@@ -6,7 +6,7 @@
 
 
     <!-- Support for different screen sizes -->
-    <dimen name="img_holder_height">140dp</dimen>
-    <dimen name="img_holder_width">180dp</dimen>
+    <dimen name="img_holder_height">420dp</dimen>
+    <dimen name="img_holder_width">540dp</dimen>
 
 </resources>
